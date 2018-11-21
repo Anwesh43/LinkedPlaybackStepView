@@ -183,6 +183,29 @@ class PlaybackStepView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
-        } 
+        }
+    }
+
+    data class Renderer(var view : PlaybackStepView) {
+
+        private val animator : Animator = Animator(view)
+
+        private val ps : PlaybackStep = PlaybackStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(BACK_COLOR)
+            ps.draw(canvas, paint)
+            animator.animate {
+                ps.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ps.startUpdating {
+                animator.start()
+            }
+        }
     }
 }
