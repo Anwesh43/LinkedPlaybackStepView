@@ -18,3 +18,7 @@ val nodes : Int = 5
 val BACK_COLOR : Int = Color.parseColor("#212121")
 
 val COLOR : Int = Color.parseColor("#EEEEEE")
+
+fun Int.getInverse() : Float = 1f / this
+
+fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.getInverse(), Math.max(0f, this - i * n.getInverse())) * n
