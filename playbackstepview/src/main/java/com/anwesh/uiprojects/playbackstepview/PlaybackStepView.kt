@@ -210,4 +210,12 @@ class PlaybackStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : PlaybackStepView {
+            val view : PlaybackStepView = PlaybackStepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
